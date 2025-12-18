@@ -1,38 +1,96 @@
-.App {
-  text-align: center;
+body{
+  background-color: rgba(211, 211, 211, 0.57);
+}
+.main-tittle{
+background-color:black;
+text-align: center;
+color:white;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 30px;
+padding: 10px;
+border-radius: 25px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* table css */
+.edit-btn{
+  background-color: green;
+  border: none;
+  border-radius: 15px;
+  padding: 6px 15px;
+  cursor: pointer;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.edit-btn:hover{
+  background-color: hsla(120, 100%, 25%, 0.79);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.delete-btn{
+ background-color: red;
+ border: none;
+border-radius: 15px;
+  padding: 6px 15px;
+  cursor: pointer;
+}
+.delete-btn:hover{
+  background-color: rgba(255, 10, 10, 0.577);
+}
+table{
+  margin-left: 100px;
+ background-color: lightgray;
+  border:1px solid black;
+  border-radius: 8px;
+  border-spacing: 0;
+  width: 80%;
+}
+table, th, td {
+  border: 2px solid black; 
+  padding: 10px;
+  text-align: center; 
+}
+th{
+  background-color: yellow;
+  color: black;
+  font-family: verdana;
+}
+td{
+  background-color: lightblue;
+}
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+/* form css */
+.container{
+  color: balck;
+}
+hr{
+  border:1px solid gray;
+  width:100%;
+}
+.container{
+  width:300px;
+}
+/* .inserting{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap:10px; 
+} */
+.form-vertical{
+  display: flex;
+  flex-direction: column; 
+  gap: 12px;            
+  width: 300px;
+}
+
+input,select{
+  background-color: white;
+  padding: 5px;
+  border:1px solid black;
+  border-radius: 15px;;
+}
+.sub-btn{
+  background-color: green;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
 }
