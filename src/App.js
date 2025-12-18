@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import EquipmentForm from "./components/EquipmentForm";
 import EquipmentTable from "./components/EquipmentTable";
-import  "./App.css";
+import "./App.css";
 import {
   getAllEquipment,
   addEquipment,
@@ -13,9 +13,15 @@ function App() {
   const [equipment, setEquipment] = useState([]);
   const [editItem, setEditItem] = useState(null);
 
+  // ✅ FIX ADDED HERE
   const loadEquipment = async () => {
-    const res = await getAllEquipment();
-    setEquipment(res.data);
+    try {
+      const res = await getAllEquipment();
+      setEquipment(res.data);
+    } catch (error) {
+      console.error("Backend not available");
+      setEquipment([]); // prevents blank screen on GitHub Pages
+    }
   };
 
   useEffect(() => {
@@ -23,25 +29,35 @@ function App() {
   }, []);
 
   const handleSave = async (data) => {
-    if (editItem) {
-      await updateEquipment(editItem.id, data);
-      setEditItem(null);
-    } else {
-      await addEquipment(data);
+    try {
+      if (editItem) {
+        await updateEquipment(editItem.id, data);
+        setEditItem(null);
+      } else {
+        await addEquipment(data);
+      }
+      loadEquipment();
+    } catch (error) {
+      alert("Backend not available");
     }
-    loadEquipment();
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Delete this equipment?")) {
-      await deleteEquipment(id);
-      loadEquipment();
+    try {
+      if (window.confirm("Delete this equipment?")) {
+        await deleteEquipment(id);
+        loadEquipment();
+      }
+    } catch (error) {
+      alert("Backend not available");
     }
   };
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1 className="main-tittle">Equipment Management</h1>
+      {/* small typo fix */}
+      <h1 className="main-title">Equipment Management</h1>
+
       <EquipmentForm onSave={handleSave} editItem={editItem} />
       <EquipmentTable
         equipment={equipment}
